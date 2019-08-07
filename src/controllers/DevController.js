@@ -21,5 +21,21 @@ module.exports = {
     })
       .then(devCreated => res.json(devCreated))
       .catch(err => res.json(err))
+  },
+
+  async index(req, res) {
+    const { user } = req.headers
+
+    const loggedDev = await DevModel.findById(user)
+
+    const users = await DevModel.find({
+      $and: [
+        { _id: { $ne: user } },
+        { _id: { $nin: loggedDev.likes } },
+        { _id: { $nin: loggedDev.dislikes } }
+      ]
+    })
+
+    return res.json(users)
   }
 }
