@@ -2,7 +2,7 @@ const express = require('express')
 const server = express()
 const routes = require('./routes')
 const mongoose = require('mongoose')
-const porta = process.env.PORT || 3000
+const porta = process.env.PORT || 3333
 const cors = require('cors')
 
 mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-6tvwh.mongodb.net/omnistack8?retryWrites=true&w=majority', { useNewUrlParser: true })
